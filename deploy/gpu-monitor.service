@@ -1,0 +1,24 @@
+[Unit]
+Description=GPU Metrics Monitoring Server (nvidia-smi-webserver)
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/gpu-monitor
+ExecStart=/usr/bin/python3 /opt/gpu-monitor/server.py
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+# Security hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadOnlyPaths=/
+ReadWritePaths=/tmp
+
+[Install]
+WantedBy=multi-user.target

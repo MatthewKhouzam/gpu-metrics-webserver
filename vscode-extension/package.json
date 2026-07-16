@@ -1,0 +1,87 @@
+{
+  "name": "gpu-thermal-monitor",
+  "displayName": "GPU Thermal Throttle Monitor",
+  "description": "Monitors remote GPU temperature and power draw, alerts on thermal throttling",
+  "version": "0.1.0",
+  "publisher": "Matthew Khouzam",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TheMatthew/nvidia-smi-webserver"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "gpuMonitor.start",
+        "title": "GPU Monitor: Start Monitoring"
+      },
+      {
+        "command": "gpuMonitor.stop",
+        "title": "GPU Monitor: Stop Monitoring"
+      },
+      {
+        "command": "gpuMonitor.showStatus",
+        "title": "GPU Monitor: Show GPU Status"
+      }
+    ],
+    "configuration": {
+      "title": "GPU Thermal Monitor",
+      "properties": {
+        "gpuMonitor.serverUrl": {
+          "type": "string",
+          "default": "http://localhost:8000",
+          "description": "URL of the GPU monitoring server (e.g. http://192.168.1.50:8000)"
+        },
+        "gpuMonitor.pollIntervalMs": {
+          "type": "number",
+          "default": 2000,
+          "description": "Polling interval in milliseconds"
+        },
+        "gpuMonitor.temperatureThreshold": {
+          "type": "number",
+          "default": 87,
+          "description": "Temperature threshold in °C to trigger alerts"
+        },
+        "gpuMonitor.powerHighThreshold": {
+          "type": "number",
+          "default": 300,
+          "description": "Power draw in watts considered 'high' (at full load)"
+        },
+        "gpuMonitor.powerDropPercent": {
+          "type": "number",
+          "default": 15,
+          "description": "Percentage drop in power that indicates throttling"
+        },
+        "gpuMonitor.gpuIndex": {
+          "type": "number",
+          "default": 0,
+          "description": "Index of the GPU to monitor (from the server response)"
+        },
+        "gpuMonitor.notificationCooldownMs": {
+          "type": "number",
+          "default": 60000,
+          "description": "Minimum time between repeated notifications (ms)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/vscode": "1.85.0",
+    "@types/node": "20.11.0",
+    "typescript": "5.3.3"
+  }
+}
