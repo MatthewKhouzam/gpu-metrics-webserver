@@ -3,8 +3,9 @@
   "displayName": "GPU Thermal Throttle Monitor",
   "description": "Monitors remote GPU temperature and power draw, alerts on thermal throttling",
   "version": "0.1.0",
-  "publisher": "Matthew Khouzam",
+  "publisher": "matthew-khouzam",
   "license": "MIT",
+  "icon": "gpu.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/TheMatthew/nvidia-smi-webserver"
@@ -77,11 +78,15 @@
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "lint": "eslint src --ext ts"
+    "lint": "eslint src --ext ts",
+    "package": "ovsx create-namespace matthew-khouzam || true && npx vsce package",
+    "publish:openvsx": "ovsx publish gpu-thermal-monitor-0.1.0.vsix"
   },
   "devDependencies": {
     "@types/vscode": "1.85.0",
     "@types/node": "20.11.0",
-    "typescript": "5.3.3"
+    "typescript": "5.3.3",
+    "ovsx": "0.9.5",
+    "@vscode/vsce": "3.2.1"
   }
 }
