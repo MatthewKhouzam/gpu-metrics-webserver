@@ -1,0 +1,40 @@
+name: Build Server Tarball
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'server.py'
+      - 'install.sh'
+      - 'deploy/**'
+      - '.github/workflows/build-server-tarball.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'server.py'
+      - 'install.sh'
+      - 'deploy/**'
+      - '.github/workflows/build-server-tarball.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create tarball
+        run: |
+          VERSION="${GITHUB_SHA::8}"
+          ARCHIVE="gpu-monitor-server-${VERSION}.tar.gz"
+          tar -czf "${ARCHIVE}" \
+            server.py \
+            install.sh \
+            deploy/gpu-monitor.service
+          echo "ARCHIVE=${ARCHIVE}" >> "$GITHUB_ENV"
+
+      - name: Upload tarball artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: gpu-monitor-server
+          path: ${{ env.ARCHIVE }}
