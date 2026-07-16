@@ -2,7 +2,7 @@
   "name": "gpu-thermal-monitor",
   "displayName": "GPU Thermal Throttle Monitor",
   "description": "Monitors remote GPU temperature and power draw, alerts on thermal throttling",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publisher": "matthew-khouzam",
   "license": "MIT",
   "icon": "gpu.png",
@@ -80,7 +80,7 @@
     "watch": "tsc -watch -p ./",
     "lint": "eslint src --ext ts",
     "package": "ovsx create-namespace matthew-khouzam || true && npx vsce package",
-    "publish:openvsx": "ovsx publish gpu-thermal-monitor-0.1.0.vsix"
+    "publish:openvsx": "ovsx publish *.vsix"
   },
   "devDependencies": {
     "@types/vscode": "1.85.0",
