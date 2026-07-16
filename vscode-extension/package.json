@@ -8,7 +8,7 @@
   "icon": "gpu.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/TheMatthew/nvidia-smi-webserver"
+    "url": "https://github.com/MatthewKhouzam/gpu-metrics-webserver"
   },
   "engines": {
     "vscode": "^1.85.0"
