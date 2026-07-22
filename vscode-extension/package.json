@@ -2,7 +2,7 @@
   "name": "gpu-thermal-monitor",
   "displayName": "GPU Thermal Throttle Monitor",
   "description": "Monitors remote GPU temperature and power draw, alerts on thermal throttling",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "publisher": "matthew-khouzam",
   "license": "MIT",
   "icon": "gpu.png",
